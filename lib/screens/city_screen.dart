@@ -36,42 +36,48 @@ class _CityScreenState extends State<CityScreen> {
         child: SafeArea(
           child: Column(
             children: <Widget>[
-          Align(
-          alignment: Alignment.topLeft,
-            child: TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Icon(
-                Icons.arrow_back_ios,
-                size: 50.0,
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    size: 50.0,
+                  ),
+                ),
               ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            child: TextField(
-              decoration: kTextFieldStyle,
-              controller: controller,
-              style: TextStyle(color: Colors.black),
-              onChanged: (controller) {
-              cityName = controller;
-            },
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: TextField(
+                  decoration: kTextFieldStyle,
+                  controller: controller,
+                  style: TextStyle(color: Colors.black),
+                  onChanged: (controller) {
+                    cityName = controller;
+                  },
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LoadingScreen(
+                                cityLocator: true,
+                                cityName: cityName,
+                              )));
+                },
+                child: Text(
+                  'Get Weather',
+                  style: kButtonTextStyle,
+                ),
+              ),
+            ],
           ),
         ),
-        TextButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => LoadingScreen(cityLocator: true,cityName: cityName,)));
-          },
-          child: Text(
-            'Get Weather',
-            style: kButtonTextStyle,
-          ),
-        ),
-        ],
       ),
-    ),)
-    ,
     );
   }
 }
